@@ -8,6 +8,8 @@ class RingBuffer:
     def append(self, item):
         if len(self.storage) < self.capacity:
             self.storage.add(item)
+        else:
+            self.storage.overwrite(item)
 
     def get(self):
         return self.storage.to_array()
@@ -15,5 +17,8 @@ class RingBuffer:
 buffer = RingBuffer(3)
 
 buffer.append('a')
+buffer.append('b')
+buffer.append('c')
+buffer.append('d')
 
 print(buffer.get())   # should return []
