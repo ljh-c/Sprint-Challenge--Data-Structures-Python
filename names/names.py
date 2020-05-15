@@ -21,17 +21,30 @@ duplicates = []  # Return the list of duplicates in this data structure
 #         if name_1 == name_2:
 #             duplicates.append(name_1)
 
-# TIME COMPLEXITY: O(n^2)
-# 2n^2 or 2log(n)
+# TIME COMPLEXITY: O(n^2) [worst] or O(n*log(n)) [avg]
+# 2 * n^2 or 2 * n*log(n)
 
-bst = BSTNode(names_1[0])
+# bst = BSTNode(names_1[0])
 
-for name_1 in names_1[1:]:
-    bst.insert(name_1)
+# for name_1 in names_1[1:]:
+#     bst.insert(name_1)
 
-for name_2 in names_2:
-    if bst.contains(name_2):
-        duplicates.append(name_2)
+# for name_2 in names_2:
+#     if bst.contains(name_2):
+#         duplicates.append(name_2)
+
+# runtime: 0.151231050491333 seconds
+
+# - STRETCH -
+
+# TIME COMPLEXITY: O(n)
+# 2 * n
+
+name1_set = frozenset(names_1)
+
+duplicates = [name_2 for name_2 in names_2 if name_2 in name1_set]
+
+# runtime: 0.0071909427642822266 seconds
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
